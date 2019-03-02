@@ -26,6 +26,8 @@ const jwtStrategy = require("./auth/jwt");
  * Setup services
  */
 
+const CLIENT_BUILD_PATH = path.join(__dirname, "../../dist");
+
 const connect = url => {
   return mongoose.connect(url, config.db.options);
 };
@@ -35,6 +37,13 @@ mongoose.connection.on("errorr", console.log);
 
 // Initiliase an express server
 const app = express();
+
+app.use(express.static(CLIENT_BUILD_PATH));
+app.use(compression());
+
+app.get("*", function(request, response) {
+  response.sendFile(path.join(CLIENT_BUILD_PATH, "index.html"));
+});
 
 // Setup middleware
 app.use(helmet());

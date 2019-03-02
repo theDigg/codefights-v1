@@ -6,8 +6,6 @@ export const LOGIN_REQUEST = "LOGIN_REQUEST";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_ERROR = "LOGIN_ERROR";
 
-const app = "hello";
-
 const loginRequest = { type: LOGIN_REQUEST };
 const loginSuccess = token => ({
   type: LOGIN_SUCCESS,
