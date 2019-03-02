@@ -21,12 +21,13 @@ const mongoose = require("mongoose");
 const config = require("./config");
 const localStrategy = require("./auth/local");
 const jwtStrategy = require("./auth/jwt");
+require("dotenv").config();
 
 /**
  * Setup services
  */
 
-const CLIENT_BUILD_PATH = path.join(__dirname, "../../dist");
+const CLIENT_BUILD_PATH = path.join(__dirname, "../../client/build");
 
 const connect = url => {
   return mongoose.connect(url, config.db.options);
