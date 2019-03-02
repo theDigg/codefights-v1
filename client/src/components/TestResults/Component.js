@@ -23,8 +23,10 @@ export default class TestResults extends React.Component {
 }
 
 const PassResult = styled.p`
+  margin: 1rem;
   color: green;
 `;
 const FailResult = styled.p`
+  margin: 1rem;
   color: red;
 `;

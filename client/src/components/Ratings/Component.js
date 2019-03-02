@@ -56,10 +56,10 @@ const Title = styled.h1`
   grid-column: 1 / 3;
   justify-self: center;
   align-self: center;
-  color: gainsboro;
-  width: 100%;
+  color: ${props => props.theme.normalText};
+  background-color: ${props => props.theme.border};
+  box-shadow: 4px 4px 12px ${props => props.theme.shadow};
+  width: 80%;
   text-align: center;
   font-size: 40px;
-  background: rgba(0, 0, 0, 0.5);
-  width: 100%;
 `;

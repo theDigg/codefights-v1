@@ -1,6 +1,6 @@
 const baseUrl =
   process.env.NODE_ENV === "development"
-    ? "http://localhost:4000/api"
+    ? "http://localhost:8080/api"
     : `https://${window.location.hostname}/api`;
 
 const methods = {

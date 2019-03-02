@@ -181,18 +181,19 @@ const TabContainer = styled.div`
   align-items: center;
 `;
 const Tab = styled.div`
-  background-color: ${props => props.theme.border};
-  color: ${props => props.theme.normalText};
-  font-size: 28px;
+  background-color: ${props => props.theme.normalText};
+  color: ${props => props.theme.foreground};
+  font-size: 20px;
   text-align: center;
   cursor: pointer;
   line-height: 40px;
   padding: 2px;
+  box-shadow: 4px 4px 12px ${props => props.theme.shadow};
   ${props => ({ active }) =>
     active &&
     `
     color: ${props.theme.normalText};
-    background: ${props.theme.foreground};
+    background-color: ${props.theme.foreground};
     font-weight: bold;
   `};
   @media (max-width: 700px) {

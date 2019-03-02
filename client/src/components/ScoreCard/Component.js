@@ -8,9 +8,9 @@ const Layout = styled.div`
   justify-items: center;
   align-items: center;
   margin-bottom: 0.5em;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.9);
+  box-shadow: 4px 4px 12px ${props => props.theme.shadow};
   border: 1px solid black;
-  border-radius: 5px;
+  border-radius: 2px;
   height: 30px;
   font-size: 16px;
   @media (max-width: 700px) {

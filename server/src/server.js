@@ -2,21 +2,13 @@
 const express = require("express");
 const compression = require("compression");
 const http = require("http");
-const https = require("https");
-const fs = require("fs");
 const path = require("path");
 const socket = require("socket.io");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const passport = require("passport");
-const signup = require("./routes/signup");
-const users = require("./routes/users");
-const runner = require("./routes/runner");
-const auth = require("./routes/auth");
-const challengeRoutes = require("./routes/challenge");
 const databaseRoutes = require("./routes/database");
 const helmet = require("helmet");
-const sessions = require("client-sessions");
 const mongoose = require("mongoose");
 const config = require("./config");
 const localStrategy = require("./auth/local");
@@ -34,17 +26,13 @@ const connect = url => {
 };
 
 connect(config.db.prod);
-mongoose.connection.on("errorr", console.log);
+mongoose.connection.on("error", console.log);
 
 // Initiliase an express server
 const app = express();
 
 app.use(express.static(CLIENT_BUILD_PATH));
 app.use(compression());
-
-app.get("*", function(request, response) {
-  response.sendFile(path.join(CLIENT_BUILD_PATH, "index.html"));
-});
 
 // Setup middleware
 app.use(helmet());
@@ -56,29 +44,8 @@ app.use(cors());
 passport.use(localStrategy);
 passport.use(jwtStrategy);
 
-// app.use("/api/signup", signup);
-// app.use("/api/runner", runner);
-// app.use("/auth", auth);
-// app.use("/", users);
-// app.use("/", challengeRoutes);
-// app.use("/", databaseRoutes);
-
 require("./routes")(app);
-let server;
-
-// If we are in production we are already running in https
-if (process.env.NODE_ENV === "production") {
-  const certOptions = {
-    key: fs.readFileSync(path.resolve("ssl/cert.key")),
-    cert: fs.readFileSync(path.resolve("ssl/cert.pem"))
-  };
-  server = https.createServer(certOptions, app);
-}
-// We are not in production so load up our certificates to be able to
-// run the server in https mode locally
-else {
-  server = http.createServer(app);
-}
+let server = http.createServer(app);
 
 const io = (module.exports.io = socket(server));
 const ioOnline = (module.exports.ioOnline = io.of("api/online"));

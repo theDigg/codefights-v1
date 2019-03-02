@@ -173,6 +173,7 @@ const UserConsole = styled.div`
 `;
 const Result = styled.p`
   font-size: 12px;
+  margin: 0.5rem;
   color: ${props => {
     if (props.passing) {
       return "green";
@@ -194,14 +195,16 @@ const Button = styled.button`
   width: 50%;
   height: 100%;
   justify-self: center;
-  border-radius: 10px;
+  border-radius: 2px;
   font-size: 20px;
-  background: lightgrey;
+  background-color: ${props => props.theme.border};
+  border: ${props => `1px solid ${props.theme.border}`};
+  color: ${props => props.theme.normalText};
   &:hover {
     font-weight: bold;
-    background: maroon;
-    color: ghostwhite;
-    border: 1px solid maroon;
+    background-color: ${props => props.theme.normalText};
+    color: ${props => props.theme.foreground};
+    border: ${props => `1px solid ${props.theme.border}`};
     cursor: pointer;
   }
   @media (max-width: 700px) {

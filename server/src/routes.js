@@ -3,6 +3,9 @@ const scores = require("./controllers/scores");
 const sandbox = require("./controllers/sandbox");
 const { jwtAuth, postAuth, commentAuth } = require("./auth");
 const router = require("express").Router();
+const path = require("path");
+
+const CLIENT_BUILD_PATH = path.join(__dirname, "../../client/build");
 
 router.post("/login", users.validate(), users.login);
 router.post("/register", users.validate("register"), users.register);
@@ -13,8 +16,8 @@ router.post("/challenge", sandbox.challenge);
 module.exports = app => {
   app.use("/api", router);
 
-  app.get("*", (req, res) => {
-    res.status(404).json({ message: "not found" });
+  app.get("*", function(request, response) {
+    response.sendFile(path.join(CLIENT_BUILD_PATH, "index.html"));
   });
 
   app.use((err, req, res, next) => {
