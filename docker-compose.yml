@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  ##########################
+  ### SETUP SERVER CONTAINER
+  ##########################
+  server:
+    # Tells docker-compose which image to pull from docker hub
+    image: kshifflett707/codefights_server:latest
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - PORT=${PORT}
+      - NODE_ENV=${NODE_ENV}
+      - SESSION_SECRET=${SESSION_SECRET}
+      - JWT_SECRET=${JWT_SECRET}
+    ports:
+      - ${PORT}:${PORT}
+    command: node src/server.js
+    restart: always
+  ##########################
+  ### SETUP CLIENT CONTAINER
+  ##########################
+  client:
+    image: kshifflett707/codefights_client:latest
+    ports:
+      - 80:80
+    links:
+      - server
+    restart: always

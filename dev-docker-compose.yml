@@ -1,0 +1,56 @@
+version: "3"
+
+services:
+  ##########################
+  ### SETUP SERVER CONTAINER
+  ##########################
+  server:
+    # Tell docker what file to build the server from
+    build:
+      context: ./server
+      dockerfile: Dockerfile-dev
+    # The ports to expose
+    expose:
+      - 4000
+    # Environment variables
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - PORT=4000
+      - JWT_EXPIRY=30d
+      - DEBUG=worker:*
+      - MORGAN=combined
+      - NODE_ENV=development
+      - SESSION_SECRET=${SESSION_SECRET}
+      - JWT_SECRET=${JWT_SECRET}
+    # Port mapping
+    ports:
+      - 4000:4000
+    # Volumes to mount
+    volumes:
+      - ./server/src:/app/server/src
+    # Run command
+    # Nodemon for hot reloading (-L flag required for polling in Docker)
+    command: nodemon -L src/server.js
+    # Restart action
+    restart: always
+  ##########################
+  ### SETUP CLIENT CONTAINER
+  ##########################
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile-dev
+    environment:
+      - REACT_APP_PORT=3000
+      - CHOKIDAR_USEPOLLING=true
+    expose:
+      - 3000
+    ports:
+      - 3000:3000
+    volumes:
+      - ./client/src:/app/client/src
+      - ./client/public:/app/client/public
+    links:
+      - server
+    command: npm run start
+    restart: always

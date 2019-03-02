@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+  ##########################
+  ### SETUP SERVER CONTAINER
+  ##########################
+  server:
+    build: ./server
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - PORT=${PORT}
+      - NODE_ENV=${NODE_ENV}
+      - SESSION_SECRET=${SESSION_SECRET}
+      - JWT_SECRET=${JWT_SECRET}
+    ports:
+      - ${PORT}:${PORT}
+    command: node src/server.js
+    restart: always
+  ##########################
+  ### SETUP CLIENT CONTAINER
+  ##########################
+  client:
+    build: ./client
+    environment:
+      - NODE_ENV=${NODE_ENV}
+    ports:
+      - 80:80
+    links:
+      - server
+    restart: always
