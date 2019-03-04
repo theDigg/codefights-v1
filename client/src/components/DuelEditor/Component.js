@@ -67,7 +67,7 @@ const DuelEditor = props => {
 export default DuelEditor;
 
 const Wrapper = styled.div`
-  grid-row: 2;
+  grid-row: 3;
   grid-column: 1 / 3;
   margin-right: 1rem;
   margin-left: 1rem;

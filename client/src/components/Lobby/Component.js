@@ -193,12 +193,12 @@ const Legend = styled.div`
 const Ranks = styled.h1`
   grid-row: 1;
   grid-column: 1 / 4;
-  color: gainsboro;
+  color: ${props => props.theme.normalText};
   font-size: 30px;
   justify-self: center;
   align-self: center;
   text-align: center;
-  background: grey;
+  background: ${props => props.theme.foreground};
   margin-bottom: 1em;
   width: 100%;
 `;

@@ -49,10 +49,9 @@ const Prompt = styled.div`
   justify-self: center;
   font-weight: bold;
   font-size: 20px;
-  background-color: ${props => props.theme.foreground};
-  border-radius: 2px;
   color: ${props => props.theme.normalText};
-  border: 1px solid black;
+  background-color: ${props => props.theme.border};
+  border-radius: 2px;
   box-shadow: 0 4px 12px ${props => props.theme.shadow};
   padding: 0.5em;
   width: 70%;

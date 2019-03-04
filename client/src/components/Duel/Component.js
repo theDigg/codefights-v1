@@ -140,7 +140,7 @@ export default class Duel extends Component {
 
 const Layout = styled.div`
   display: grid;
-  grid-template-rows: 30px 55vh auto 40px;
+  grid-template-rows: 30px 10px 55vh auto 40px;
   grid-template-columns: 1fr 1fr;
   width: 100vw;
   height: calc(100vh - 68px);
@@ -148,14 +148,14 @@ const Layout = styled.div`
 `;
 const UserDiv = styled.div`
   grid-row: 1;
-  background: grey;
-  border-radius: 5px;
+  background-color: ${props => props.theme.border};
+  border-radius: 2px;
   width: 75%;
   min-width: 200px;
   justify-self: center;
 `;
 const Console = styled.div`
-  grid-row: 3;
+  grid-row: 4;
   grid-column: 1 / 3;
   background: black;
   display: grid;
@@ -190,7 +190,7 @@ const OpponentConsole = styled.div`
   padding-left: 1rem;
 `;
 const Button = styled.button`
-  grid-row: 4;
+  grid-row: 5;
   grid-column: 1 / 3;
   width: 50%;
   height: 100%;
@@ -201,7 +201,6 @@ const Button = styled.button`
   border: ${props => `1px solid ${props.theme.border}`};
   color: ${props => props.theme.normalText};
   &:hover {
-    font-weight: bold;
     background-color: ${props => props.theme.normalText};
     color: ${props => props.theme.foreground};
     border: ${props => `1px solid ${props.theme.border}`};

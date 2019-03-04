@@ -80,7 +80,7 @@ const Body = styled.div`
 const Window = styled.div`
   grid-row: 1;
   grid-column: 2;
-  background: rgba(0, 0, 0, 0.5);
+  background: ${props => props.theme.foreground};
   overflow: hidden;
   display: grid;
   grid-template-rows: 1fr 40px;

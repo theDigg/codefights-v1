@@ -9,7 +9,6 @@ const Layout = styled.div`
   align-items: center;
   margin-bottom: 0.5em;
   box-shadow: 4px 4px 12px ${props => props.theme.shadow};
-  border: 1px solid black;
   border-radius: 2px;
   height: 30px;
   font-size: 16px;
